@@ -17,7 +17,7 @@
     </tbody>
 </table>
 
-<form action="index.php?page=home" method="POST">
+<form action="index.php?page=login" method="POST">
     <button type="submit" name="login">Login</button>
     <button type="submit" name="logout">Logout</button>
 </form>
