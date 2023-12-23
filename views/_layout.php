@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="<?= PATH ?>assets/pictures/avito.png" />
     <title><?= ucfirst($page) ?></title>
-    <link rel="stylesheet" href="<?= PATH ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= PATH ?>assets/css/login.css">
 </head>
 <body>
-    <h1><?= ucfirst($page) ?> View</h1>
 
     <main>
         <?php include_once 'views/' . $page . '_view.php'; ?>
