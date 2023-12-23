@@ -23,8 +23,8 @@ class User
     static function getAll()
     {
         global $db;
-        $result = $db->query("SELECT * FROM users");
-        return $result->fetch_all(MYSQLI_ASSOC);
+        if($result = $db->query("SELECT * FROM user"))
+            return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     function edit()
