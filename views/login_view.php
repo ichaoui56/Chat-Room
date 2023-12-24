@@ -1,3 +1,6 @@
+
+<link rel="stylesheet" href="<?= PATH ?>assets/css/login.css">
+
 <input id="checkbox_toggle" type="checkbox" class="check">
 <div class="checkbox">
     <label class="slide" for="checkbox_toggle">
