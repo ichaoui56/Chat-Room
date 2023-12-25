@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="<?= PATH ?>assets/css/home.css">
+<link rel="stylesheet" href="./assets/css/home.css">
+<title><?= ucfirst($page) ?></title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x/dist/tailwind.min.css" rel="stylesheet">
 
 <body>
@@ -6,7 +7,7 @@
 <div class="w-full text-white">
     <div x-data="{ open: false }"
          class="w-full fixed top-0 h-28 flex flex-col  mx-auto md:items-center  md:flex-row md:px-4 lg:px-4"
-    style="backdrop-filter: blur(10px); z-index: 100">
+    style=" z-index: 100">
         <div class="flex flex-row align-center justify-between">
             <a href="#"><img src="./assets/pictures/logo.png" class="w-96" alt="helllooo"></a>
             <button class="text-white md:hidden rounded-lg focus:outline-none focus:shadow-outline"
@@ -498,10 +499,10 @@
     <section class=" text-gray-100 px-8 py-12 bg-black" id="contact">
 
         <div class="text-center w-full">
-            <svg class="text-gray-100 h-8 mx-auto" fill=currentColor viewBox="0 0 150 29" version="1.1"
-                 xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-
-            </svg>
+<!--            <svg class="text-gray-100 h-8 mx-auto" fill=currentColor viewBox="0 0 150 29" version="1.1"-->
+<!--                 xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">-->
+<!---->
+<!--            </svg>-->
         </div>
         <div class="max-w-screen-xl mt-24 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto  bg-opacity-10 blur-5xl text-gray-900 rounded-lg shadow-lg "
              style="background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b3be1dae-3caa-4d45-be6c-3de586ba95e2/deph4ko-907df8a7-0773-40d4-90cb-24d3399585d4.jpg/v1/fill/w_1192,h_670,q_70,strp/midnight_moon_by_bisbiswas_deph4ko-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6IlwvZlwvYjNiZTFkYWUtM2NhYS00ZDQ1LWJlNmMtM2RlNTg2YmE5NWUyXC9kZXBoNGtvLTkwN2RmOGE3LTA3NzMtNDBkNC05MGNiLTI0ZDMzOTk1ODVkNC5qcGciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.ExS5mNkE5jQPAwHqnCUmpam_IZX1h8sFmTUxRjt3GPE); background-size: cover ;">
