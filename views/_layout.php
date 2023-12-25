@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="./assets/css/tailwind.css">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link href="https://unpkg.com/movement.css/movement.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="<?= PATH ?>assets/pictures/avito.png" />
+    <link rel="icon" type="image/png" href="./assets/pictures/avito.png" />
     <title><?= ucfirst($page) ?></title>
+
 
 
 
