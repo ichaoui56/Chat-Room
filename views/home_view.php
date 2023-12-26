@@ -34,7 +34,7 @@
 
 
 
-
+            <?php if(!isset($_SESSION['login'])) { ?>
             <form action="index.php?page=login" method="POST">
                 <button  class="button">
                     <span class="button_lg">
@@ -43,10 +43,21 @@
                     </span>
                 </button>
             </form>
+            <?php }else { ?>
+            <form action="index.php?page=discussion" method="POST">
+                <button  class="button">
+                    <span class="button_lg">
+                        <span class="button_sl"></span>
+                        <span class="button_text">Open Chat</span>
+                    </span>
+                </button>
+            </form>
+            <?php } ?>
 
-            <div class="sp">
+            <form action="index.php?page=home" method="post" class="sp">
+            <?php if (isset($_SESSION['login'])) {
 
-                <button class="sparkle-button">
+                echo '<button type="submit" name="logout" class="sparkle-button">
                     <span class="spark"></span>
 
                     <span class="backdrop"></span>
@@ -75,8 +86,10 @@
                         </g>
                         </svg>
                     <span class="text">Logout</span>
-                </button>
-            </div>
+                </button>';
+            }
+                ?>
+            </form>
 
 
 
@@ -688,6 +701,7 @@
             </div>
         </div>
     </footer>
+    <script src="<?= PATH ?>assets/js/home.js"></script>
     <script>
         const d = new Date();
         let year = d.getFullYear();
