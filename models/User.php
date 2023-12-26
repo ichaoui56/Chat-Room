@@ -73,6 +73,14 @@ class User extends Database
         }
     }
 
+    static function getAll()
+    {
+        global $db;
+        $result = $db->query("SELECT * FROM user");
+        if ($result)
+            return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     /** ADD New User:
      * @param string $email
      * @param string $password
@@ -106,7 +114,7 @@ class User extends Database
 
     function logout () {
         session_destroy();
-        header('Location: index.php?');
+        header('Location: index.php?page=home');
     }
 
 
