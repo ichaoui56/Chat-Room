@@ -52,7 +52,7 @@ if (isset($_POST['signup'])) {
         if ($userChecker) {
             throw new Exception("User_exist");
         } else {
-            $User->register($email, $password, $username, $picture);
+            $User->register($email, $password, $username, $fileName);
             header('Location: index.php?page=login');
         }
     }
@@ -65,6 +65,7 @@ if (isset($_POST['login'])) {
     if ($userChecker) {
         if (password_verify($password, $userChecker["password"])) {
             $User->login($userChecker["user_id"]);
+            header('Location: index.php?page=discussion');
         }
         else
             throw new Exception("password_incorrect");
