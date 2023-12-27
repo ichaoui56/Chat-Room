@@ -6,7 +6,7 @@ include_once 'Database.php';
 
 class User extends Database
 {
-    private $userName = "";
+    private $userName;
     private $email;
     private $password;
     private $picture;
