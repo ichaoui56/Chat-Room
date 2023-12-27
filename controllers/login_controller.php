@@ -65,7 +65,7 @@ if (isset($_POST['login'])) {
     if ($userChecker) {
         if (password_verify($password, $userChecker["password"])) {
             $User->login($userChecker["user_id"]);
-            header('Location: index.php?page=discussion');
+            header('Location: index.php?page=home');
         }
         else
             throw new Exception("password_incorrect");
