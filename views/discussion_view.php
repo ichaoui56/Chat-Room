@@ -369,7 +369,7 @@
                                         <?= $userData['email'] ?>
                                     </div>
                                 </div>
-                                <p class="font-bold text-center text-black text-xl" >List of friends</p>
+                                <p class="font-bold text-center text-black text-xl" >List of Invitations</p>
                                 <div id="invitation-section" class="active-users flex flex-row p-2 overflow-auto w-0 min-w-full">
 
                                 </div>
