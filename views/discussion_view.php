@@ -8,9 +8,9 @@
         <main class="flex-grow flex flex-row min-h-0">
             <section class="flex flex-col flex-none overflow-auto w-24 group lg:max-w-sm md:w-2/5 transition-all duration-300 ease-in-out">
                 <div class="header p-4 flex flex-row justify-between items-center flex-none">
-                    <div id="roomForm" class="top-1/4 left-1/3  mt-2">
+                    <div id="roomForm" class="mt-2">
                         <div id="overlay" class="fixed inset-0 bg-black opacity-70 hidden"></div>
-                        <div id="contact-form" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg" style="width: 400px">
+                        <div id="contact-form" class="fixed transform mt-20 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg" style="width: 400px; margin-left: 600px">
                             <button id="close-btn" class="text-gray-700 hover:text-red-600 font-bold text-xl absolute top-2 right-2" onclick="closeForm()">X</button>
                             <h2 class="text-2xl font-semibold mb-4">Create Room</h2>
                             <form action="" method="" class="space-y-4">
@@ -120,7 +120,7 @@
                              x-transition:leave-end="opacity-0 scale-90"
                              class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
                         >
-                            <a href="#" class="flex bg-white items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <a href="#" class="cursor-pointer flex bg-white items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200" alt="jane avatar">
                                 <div class=" mx-1">
                                     <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200"><?= $userData['username'] ?></h1>
@@ -136,7 +136,7 @@
 
 
                             <hr class="border-gray-200 dark:border-gray-700 ">
-                            <a id="ProfileBtn" class="flex items-center p-3 text-sm bg-white text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <a @click="isOpen = !isOpen" id="ProfileBtn" class="flex cursor-pointer items-center p-3 text-sm bg-white text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z" fill="currentColor"></path>
                                 </svg>
@@ -148,7 +148,7 @@
                             <hr class="border-gray-200 dark:border-gray-700 ">
 
 
-                            <a href="index.php?page=home" class="flex items-center p-3 text-sm bg-white text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <a href="index.php?page=home" class="flex items-center p-3 cursor-pointer text-sm bg-white text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z" fill="currentColor"></path>
                                 </svg>
@@ -258,9 +258,9 @@
                             </div></div><p>Adam</p></div>
                 </div>
 
-                <div class="contacts p-2 flex-1 overflow-y-scroll">
+                <div class="contacts cursor-pointer p-2 flex-1 overflow-y-scroll">
                     <?php foreach ($rooms as $room) {?>
-                    <div data-room-name="<?= $room['room_name'] ?>" data-room-id="<?= $room['room_id'] ?>" class="rooms flex justify-between items-center p-3 hover:bg-gray-800 rounded-lg relative">
+                    <div data-room-name="<?= $room['room_name'] ?>" data-room-creator="<?= $room['creator'] ?>"  data-room-id="<?= $room['room_id'] ?>" class="rooms flex justify-between items-center p-3 hover:bg-gray-800 rounded-lg relative">
                         <?php
                         $members = Room::getAllMembers($room["room_id"]);
                         $i = 0;
@@ -387,94 +387,27 @@
                         </div>
                     </div>
                 </section>
-                <div class="chat-header px-6 py-4 flex flex-row flex-none justify-between items-center shadow">
+                <div id="chat-header" class=" px-6 py-4 flex flex-row flex-none justify-between items-center shadow">
                     <div class="flex">
                         <div id="RmName" class=" text-sm">
 
                         </div>
                     </div>
                     <div id="roomDetails" class="top-1/4 left-1/3  mt-2">
-                        <div id="overlays" style="display: none" class="fixed inset-0 bg-black opacity-70 hidden"></div>
-                        <div id="room-form" style="display: none" class="fixed overflow-y-scroll top-1/2 w-96 h-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 border-4 border-black p-6 rounded shadow-lg" style="width: 400px">
-                            <button id="close" class="text-gray-700 hover:text-red-600 font-bold text-xl absolute top-2 right-2" onclick="closeForm()">X</button>
-                            <?php foreach ($rooms as $room) {
-                            $members = Room::getAllMembers($room["room_id"]);
-                            foreach ($members as $member) {?>
-                            <h2 class="text-2xl text-center font-semibold mb-4">Room Profile</h2>
-                            <form action="" method="" class="space-y-4">
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <div class="mr-4 w-12 h-12 rounded shadow">
-                                            <img class="w-full h-full overflow-hidden object-cover object-center rounded" src="https://tuk-cdn.s3.amazonaws.com/assets/components/popovers/p_1_0.png" alt="avatar" />
-                                        </div>
-                                        <div>
-                                            <h3 class="mb-2 sm:mb-1 text-black text-base font-normal leading-4"><?= $member["username"]; ?></h3>
-                                        </div>
-                                    </div>
-                                    <div class="relative font-normal text-xs sm:text-sm flex items-center text-gray-600">
-                                        <button>profile</button>
-                                        <button>Remove</button>
 
-                                    </div>
+                    </div>
+                    <div id="overlays" style="display: none" class="fixed inset-0 bg-black opacity-70 hidden"></div>
+                    <div id="room-form" style="display: none" class="fixed overflow-y-scroll ml-56 mt-96 w-96 h-96 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 border-4 border-black p-6 rounded-xl shadow-lg" style="width: 400px;">
+                        <button id="close" class="text-gray-700 hover:text-red-600 font-bold text-xl absolute top-2 right-2" onclick="closeForm()">X</button>
+                        <h2 class="text-2xl text-black text-center font-bold mb-4">Room Profile</h2>
+                        <h2 class="text-2xl text-black text-center font-bold mb-4"></h2>
+                                <div id="RoomMembers" action="" method="" class="space-y-4">
+
                                 </div>
-                            </form>
-                            <?php }} ?>
-                        </div>
-
-                        <button type="submit" name="NewRoom" id="popup" >
-                            <i id="popup-ic" class="fas fa-comment">
-                                <svg viewBox="0 0 24 24" class="w-6 h-6 right-36 bottom-40 fill-current">
-                                    <path
-                                            d="M6.3 12.3l10-10a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.4l-10 10a1 1 0 0 1-.7.3H7a1 1 0 0 1-1-1v-4a1 1 0 0 1 .3-.7zM8 16h2.59l9-9L17 4.41l-9 9V16zm10-2a1 1 0 0 1 2 0v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h6a1 1 0 0 1 0 2H4v14h14v-6z"/>
-                                </svg>
-                            </i>
-                        </button>
-
-                        <script>
-                            const openPopupBtns = document.getElementById('popup');
-                            const contactForms = document.getElementById('room-form');
-                            const popupIcons = document.getElementById('popup-ic');
-                            const overlays = document.getElementById('overlays');
-                            const closeBtn = document.getElementById('close');
-
-
-                            closeBtn.addEventListener('click', ()=>{
-                                closeForms();
-                            })
-
-
-                            openPopupBtns.addEventListener('click', function () {
-                                if (contactForms.style.display === 'block') {
-                                    contactForms.style.display = 'none';
-                                    overlays.style.display = 'none';
-                                    popupIcons.classList.remove('fa-comment');
-                                    popupIcons.classList.add('fa-comment-alt');
-                                } else {
-                                    contactForms.style.display = 'block';
-                                    overlays.style.display = 'block';
-                                    popupIcons.classList.remove('fa-comment-alt');
-                                    popupIcons.classList.add('fa-comment');
-                                }
-                            });
-
-                            function closeForms() {
-                                contactForms.style.display = 'none';
-                                overlays.style.display = 'none';
-                                popupIcons.classList.remove('fa-comment');
-                                popupIcons.classList.add('fa-comment-alt');
-                            }
-
-                            overlays.addEventListener('click', function () {
-                                closeForms();
-                            });
-
-
-
-                        </script>
                     </div>
                     <div class="flex">
 
-                        <a href="#" class="block rounded-full hover:bg-gray-700 bg-gray-800 w-10 h-10 p-2 ml-4">
+                        <a id="popup-ic" class="hidden block rounded-full hover:bg-gray-700 bg-gray-800 w-10 h-10 p-2 ml-4">
                             <svg viewBox="0 0 20 20" class="w-full h-full fill-current text-blue-500">
                                 <path d="M2.92893219,17.0710678 C6.83417511,20.9763107 13.1658249,20.9763107 17.0710678,17.0710678 C20.9763107,13.1658249 20.9763107,6.83417511 17.0710678,2.92893219 C13.1658249,-0.976310729 6.83417511,-0.976310729 2.92893219,2.92893219 C-0.976310729,6.83417511 -0.976310729,13.1658249 2.92893219,17.0710678 Z M9,11 L9,10.5 L9,9 L11,9 L11,15 L9,15 L9,11 Z M9,5 L11,5 L11,7 L9,7 L9,5 Z"/>
                             </svg>
@@ -518,7 +451,7 @@
                     </div>
                 </div>
                 <div class="chat-footer flex-none">
-                    <div class="flex flex-row items-center p-4">
+                    <div id="lastInput" class="hidden flex flex-row items-center p-4">
                         <div class="relative flex-grow">
                             <label>
                                 <input id="chat-input" class="input-message rounded-full py-2 pl-3 pr-10 w-full border bg-black focus:border-gray-700 bg-gray-800 focus:bg-gray-900 focus:outline-none text-gray-200 focus:shadow-md transition duration-300 ease-in"
