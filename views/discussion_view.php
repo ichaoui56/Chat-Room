@@ -137,9 +137,7 @@
 
                             <hr class="border-gray-200 dark:border-gray-700 ">
                             <a @click="isOpen = !isOpen" id="ProfileBtn" class="flex cursor-pointer items-center p-3 text-sm bg-white text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z" fill="currentColor"></path>
-                                </svg>
+                                <svg class="ml-2 mr-1 w-5" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>profile [#1336]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2159.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M334,2011 C337.785,2011 340.958,2013.214 341.784,2017 L326.216,2017 C327.042,2013.214 330.215,2011 334,2011 M330,2005 C330,2002.794 331.794,2001 334,2001 C336.206,2001 338,2002.794 338,2005 C338,2007.206 336.206,2009 334,2009 C331.794,2009 330,2007.206 330,2005 M337.758,2009.673 C339.124,2008.574 340,2006.89 340,2005 C340,2001.686 337.314,1999 334,1999 C330.686,1999 328,2001.686 328,2005 C328,2006.89 328.876,2008.574 330.242,2009.673 C326.583,2011.048 324,2014.445 324,2019 L344,2019 C344,2014.445 341.417,2011.048 337.758,2009.673" id="profile-[#1336]"> </path> </g> </g> </g> </g></svg>
 
                                 <span class="mx-1">
                 My profile
@@ -180,7 +178,7 @@
                 </div>
                 <div class="active-users flex flex-row p-2 overflow-auto w-0 min-w-full">
                     <div class="text-sm text-center mr-4">
-                        <button class="flex flex-shrink-0 focus:outline-none block bg-gray-800 text-gray-600 rounded-full w-20 h-20"
+                        <button id="addNewFriendFormBtn" class="flex flex-shrink-0 focus:outline-none block bg-gray-800 text-gray-600 rounded-full w-20 h-20"
                                 type="button">
                             <svg class="w-full h-full fill-current" viewBox="0 0 24 24">
                                 <path d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
@@ -269,7 +267,7 @@
                                 // Add a right margin to the first image
                                 $marginClass = $i == 0 ? '-space-x-2' : '';
                                 ?>
-                                <div class="w-10 h-10 relative flex flex-col justify-between <?= $marginClass ?>">
+                                <div class="img-container w-10 h-10 relative flex flex-col justify-between <?= $marginClass ?>">
                                     <img class="shadow-md rounded-full w-10 h-10 object-cover"
                                          src="./assets/pictures/<?= $member["picture"] ?>"
                                          alt="User Image"
@@ -372,18 +370,9 @@
                                     </div>
                                 </div>
                                 <p class="font-bold text-center text-black text-xl" >List of friends</p>
-                                <div class="active-users flex flex-row p-2 overflow-auto w-0 min-w-full">
+                                <div id="invitation-section" class="active-users flex flex-row p-2 overflow-auto w-0 min-w-full">
 
-                                    <div class="text-sm text-center mr-4"><div class="p-1 border-4 border-transparent rounded-full"><div class="w-16 h-16 relative flex flex-shrink-0">
-                                                <img class="shadow-md rounded-full w-full h-full object-cover"
-                                                     src="https://randomuser.me/api/portraits/men/75.jpg"
-                                                     alt=""
-                                                />
-                                                <div class="absolute bg-gray-900 p-1 rounded-full bottom-0 right-0">
-                                                    <div class="bg-green-500 rounded-full w-3 h-3"></div>
-                                                </div>
-                                            </div></div><p>Jeff</p></div>
-                            </div>
+                                </div>
                         </div>
                     </div>
                 </section>
@@ -445,6 +434,32 @@
 <!--                            </div>-->
 <!--                        </div>-->
 <!--                    </div>-->
+                    <div id="member-form" class="hidden fixed transform mt-20 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg" style="width: 400px; margin-left: 600px">
+                        <button id="friend-close-btn" class="text-gray-700 hover:text-red-600 font-bold text-xl absolute top-2 right-2">X</button>
+                        <h2 class="text-2xl font-semibold mb-4">Add New Friend</h2>
+                        <form action="" method="" class="space-y-4">
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-600">All Users</label>
+                                <!--                                    start of input select box-->
+
+                                <select id="newFriend" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <?php foreach ($users as $user) {
+                                        if ($user["user_id"] != $_SESSION["user_id"]) {
+                                            ?>
+                                            <option value="<?= $user["user_id"] ?>"><?= $user["username"] ?></option>
+                                        <?php }
+                                    } ?>
+
+                                </select>
+
+                                <!--                                    start of input select box-->
+                            </div>
+
+                            <div type="submit" id="addNewFriendBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Add New Friend
+                            </div>
+                        </form>
+                    </div>
 
                     <div id="chatCore" class="flex flex-col justify-start">
 <!--                        chat core -->
@@ -459,9 +474,7 @@
                             </label>
                         </div>
                         <button id="chat-btn" type="button" class="flex flex-shrink-0 focus:outline-none mx-2 block text-blue-600 hover:text-blue-700 w-6 h-6">
-                            <svg viewBox="0 0 20 20" class="w-full h-full fill-current">
-                                <path d="M11.0010436,0 C9.89589787,0 9.00000024,0.886706352 9.0000002,1.99810135 L9,8 L1.9973917,8 C0.894262725,8 0,8.88772964 0,10 L0,12 L2.29663334,18.1243554 C2.68509206,19.1602453 3.90195042,20 5.00853025,20 L12.9914698,20 C14.1007504,20 15,19.1125667 15,18.000385 L15,10 L12,3 L12,0 L11.0010436,0 L11.0010436,0 Z M17,10 L20,10 L20,20 L17,20 L17,10 L17,10 Z"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10.3009 13.6949L20.102 3.89742M10.5795 14.1355L12.8019 18.5804C13.339 19.6545 13.6075 20.1916 13.9458 20.3356C14.2394 20.4606 14.575 20.4379 14.8492 20.2747C15.1651 20.0866 15.3591 19.5183 15.7472 18.3818L19.9463 6.08434C20.2845 5.09409 20.4535 4.59896 20.3378 4.27142C20.2371 3.98648 20.013 3.76234 19.7281 3.66167C19.4005 3.54595 18.9054 3.71502 17.9151 4.05315L5.61763 8.2523C4.48114 8.64037 3.91289 8.83441 3.72478 9.15032C3.56153 9.42447 3.53891 9.76007 3.66389 10.0536C3.80791 10.3919 4.34498 10.6605 5.41912 11.1975L9.86397 13.42C10.041 13.5085 10.1295 13.5527 10.2061 13.6118C10.2742 13.6643 10.3352 13.7253 10.3876 13.7933C10.4468 13.87 10.491 13.9585 10.5795 14.1355Z" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                         </button>
                     </div>
                 </div>
@@ -472,3 +485,4 @@
 
 <script src="./assets/js/discussion.js"></script>
 
+<script src="./assets/js/newFriend.js"></script>
