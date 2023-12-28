@@ -12,8 +12,13 @@ spl_autoload_register(function ($class) {
 $database = new Database();
 $con = $database->dbh;
 
-if (!empty($_GET['page'])) {
+if (!isset($_SESSION["login"])) {
+
+    $page = 'login';
+
+} else if (isset($_SESSION["login"]) && isset($_GET['page']) && !empty($_GET['page'])) {
     $page = trim(strtolower($_GET['page']));
+
 } else {
     $page = 'home';
 }
