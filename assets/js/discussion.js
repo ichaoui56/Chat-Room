@@ -13,8 +13,8 @@ const closeBtn = document.getElementById('close');
 const PopupIc = document.getElementById("popup-ic");
 
 // PopupIc.addEventListener('click', ()=>{
-//     console.log("test");
 // });
+//     console.log("test");
 
 closeBtn.addEventListener('click', ()=>{
     closeForms();
@@ -212,7 +212,7 @@ function getRoomMemeber(roomId){
                                                 <img class="w-full h-full overflow-hidden object-cover object-center rounded" src="./assets/pictures/${member.picture}" alt="avatar" />
                                             </div>
                                             <div>
-                                                <h3 class="mb-2 sm:mb-1 text-black text-base font-normal leading-4">${member.name}</h3>
+                                                <h3 class="mb-2 sm:mb-1 text-black text-base font-normal leading-4">${member.username}</h3>
                                             </div>
                                         </div>
                                         <div class="relative font-normal text-xs sm:text-sm flex items-center text-gray-600">
