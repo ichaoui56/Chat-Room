@@ -16,7 +16,7 @@ const PopupIc = document.getElementById("popup-ic");
 // });
 //     console.log("test");
 
-closeBtn.addEventListener('click', ()=>{
+closeBtn.addEventListener('click', () => {
     closeForms();
 })
 
@@ -73,7 +73,7 @@ const chatCore = document.getElementById('chatCore');
 let currentRoom = 0;
 let currentRoomName;
 
-ProfileBtn.addEventListener('click', ()=>{
+ProfileBtn.addEventListener('click', () => {
     profile.classList.remove("hidden");
     ChatBody.classList.add("hidden");
     lastInput.classList.add("hidden");
@@ -194,13 +194,14 @@ C15.786,7.8,14.8,8.785,14.8,10s0.986,2.2,2.201,2.2S19.2,11.215,19.2,10S18.216,7.
 
 const RoomMembers = document.getElementById('RoomMembers');
 
-function getRoomMemeber(roomId){
+function getRoomMemeber(roomId) {
     $.ajax({
-        type : "POST",
-        url : "index.php?page=discussion",
-        data : {
+        type: "POST",
+        url: "index.php?page=discussion",
+        data: {
             roomId,
-            req : "members"},
+            req: "members"
+        },
         success: (data) => {
             console.log(data);
             RoomMembers.innerHTML = '';
@@ -226,21 +227,22 @@ function getRoomMemeber(roomId){
     })
 }
 
-function getRoomId(roomId){
+function getRoomId(roomId) {
     $.ajax({
-        type : "POST",
-        url : "index.php?page=discussion",
-        data : {
-            roomId ,
-            req : "getRoomId"},
+        type: "POST",
+        url: "index.php?page=discussion",
+        data: {
+            roomId,
+            req: "getRoomId"
+        },
         success: (data) => {
             console.log(data);
         }
     })
 }
 
-$(document).ready(function() {
-    $('.rooms').on('click', function() {
+$(document).ready(function () {
+    $('.rooms').on('click', function () {
 
         var roomName = $(this).data('room-name');
         var roomCreator = $(this).data('room-creator');
@@ -254,14 +256,14 @@ $(document).ready(function() {
     });
 });
 
+function fetchData() {
+    function run() {
+        displayMessage(roomid);
+    }
+    setInterval(run, 1000)
+}
+fetchData();
 
-
-
-
-// setInterval(function() {
-//     displayMessage();
-//     console.log ('testing');
-// }, 500);
 
 
 
