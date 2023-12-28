@@ -4,7 +4,47 @@ const Core = document.getElementById("Core");
 const profile = document.getElementById("profile");
 const ProfileBtn = document.getElementById("ProfileBtn");
 const ChatBody = document.getElementById("chat-body");
-const ChatFooter = document.getElementById("chat-footer");
+const chatHeader = document.getElementById("chat-header");
+const lastInput = document.getElementById("lastInput");
+const contactForms = document.getElementById('room-form');
+const popupIcons = document.getElementById('popup-ic');
+const overlays = document.getElementById('overlays');
+const closeBtn = document.getElementById('close');
+const PopupIc = document.getElementById("popup-ic");
+
+// PopupIc.addEventListener('click', ()=>{
+//     console.log("test");
+// });
+
+closeBtn.addEventListener('click', ()=>{
+    closeForms();
+})
+
+
+PopupIc.addEventListener('click', function () {
+    if (contactForms.style.display === 'block') {
+        contactForms.style.display = 'none';
+        overlays.style.display = 'none';
+        popupIcons.classList.remove('fa-comment');
+        popupIcons.classList.add('fa-comment-alt');
+    } else {
+        contactForms.style.display = 'block';
+        overlays.style.display = 'block';
+        popupIcons.classList.remove('fa-comment-alt');
+        popupIcons.classList.add('fa-comment');
+    }
+});
+
+function closeForms() {
+    contactForms.style.display = 'none';
+    overlays.style.display = 'none';
+    popupIcons.classList.remove('fa-comment');
+    popupIcons.classList.add('fa-comment-alt');
+}
+
+overlays.addEventListener('click', function () {
+    closeForms();
+});
 
 
 
@@ -36,6 +76,9 @@ let currentRoomName;
 ProfileBtn.addEventListener('click', ()=>{
     profile.classList.remove("hidden");
     ChatBody.classList.add("hidden");
+    lastInput.classList.add("hidden");
+    chatHeader.classList.add("hidden");
+    PopupIc.classList.add("hidden");
 });
 
 rooms.forEach((room) => {
@@ -49,6 +92,11 @@ rooms.forEach((room) => {
         document.getElementById("RmName").innerHTML = `<p class=\"font-bold\">${currentRoomName}</p>`;
         ChatBody.classList.remove("hidden");
         profile.classList.add("hidden");
+        lastInput.classList.remove("hidden");
+        chatHeader.classList.remove("hidden");
+        PopupIc.classList.remove("hidden");
+        getRoomMemeber(roomId);
+        getRoomId(currentRoom);
         displayMessage(currentRoom);
     })
 })
@@ -70,8 +118,6 @@ chatBtn.addEventListener('click', () => {
         success: (data) => {
             displayMessage(currentRoom);
             console.log(data);
-
-
             chatInput.value = "";
         }
     })
@@ -80,7 +126,6 @@ chatBtn.addEventListener('click', () => {
 })
 
 let lastMessageId = 0;
-
 
 function displayMessage(roomid) {
     chatCore.innerHTML = "";
@@ -94,7 +139,6 @@ function displayMessage(roomid) {
         },
         success: (data) => {
             console.log(data);
-
             let chatData = JSON.parse(data);
 
             chatData.forEach((message) => {
@@ -140,10 +184,76 @@ C15.786,7.8,14.8,8.785,14.8,10s0.986,2.2,2.201,2.2S19.2,11.215,19.2,10S18.216,7.
 </div>
 
 `;
+
+
             });
         }
     })
 }
+
+
+const RoomMembers = document.getElementById('RoomMembers');
+
+function getRoomMemeber(roomId){
+    $.ajax({
+        type : "POST",
+        url : "index.php?page=discussion",
+        data : {
+            roomId,
+            req : "members"},
+        success: (data) => {
+            console.log(data);
+            RoomMembers.innerHTML = '';
+            let MemberData = JSON.parse(data);
+            MemberData.forEach((member) => {
+                RoomMembers.innerHTML += `<div class="flex justify-between mb-4 items-center">
+                                        <div class="flex items-center">
+                                            <div class="mr-4 w-12 h-12 rounded shadow">
+                                                <img class="w-full h-full overflow-hidden object-cover object-center rounded" src="./assets/pictures/${member.picture}" alt="avatar" />
+                                            </div>
+                                            <div>
+                                                <h3 class="mb-2 sm:mb-1 text-black text-base font-normal leading-4">${member.name}</h3>
+                                            </div>
+                                        </div>
+                                        <div class="relative font-normal text-xs sm:text-sm flex items-center text-gray-600">
+                                            <button>profile</button>
+                                            <button>Remove</button>
+
+                                        </div>
+                                    </div>`;
+            })
+        }
+    })
+}
+
+function getRoomId(roomId){
+    $.ajax({
+        type : "POST",
+        url : "index.php?page=discussion",
+        data : {
+            roomId ,
+            req : "getRoomId"},
+        success: (data) => {
+            console.log(data);
+        }
+    })
+}
+
+$(document).ready(function() {
+    $('.rooms').on('click', function() {
+
+        var roomName = $(this).data('room-name');
+        var roomCreator = $(this).data('room-creator');
+        var roomId = $(this).data('room-id');
+
+        // Do something with the data
+        console.log('Room Name:', roomName);
+        console.log('Room Creator:', roomCreator);
+        console.log('Room ID:', roomId);
+
+    });
+});
+
 
 
 
