@@ -28,6 +28,23 @@ if (isset($_POST["req"]) && $_POST["req"] == "chat") {
     exit;
 }
 
+
+if (isset($_POST["req"]) && $_POST["req"] == "getRoomId") {
+    extract($_POST);
+    $_SESSION["RoomId"] = $_POST["roomId"];
+    echo "nadi";
+    exit;
+}
+
+if (isset($_POST["req"]) && $_POST["req"] == "members"){
+
+    $memberData = Room::getAllMembers($_SESSION["RoomId"]);
+    echo json_encode($memberData);
+    exit;
+}
+
+
+
 if (isset($_POST["req"]) && $_POST["req"] == "InsertChat") {
     extract($_POST);
     $room = new Room();
