@@ -1451,4 +1451,10 @@ a {
     transition: 0.5s;
 }
 
+.rooms > .img-container:first-child {
+    transform: translate(0, 8px);
+}
 
+.rooms > .img-container:nth-child(2) {
+    transform: translate(-20px, -8px);
+}
