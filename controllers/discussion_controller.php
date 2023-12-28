@@ -53,3 +53,23 @@ if (isset($_POST["req"]) && $_POST["req"] == "InsertChat") {
     echo json_encode($_POST);
     exit;
 }
+
+if (isset($_POST["req"]) && $_POST["req"] == "invitation") {
+    $receiver = $_SESSION["user_id"];
+    $roomInvite = Room::displayInvitation($receiver, $db);
+    echo json_encode($roomInvite);
+    exit;
+}
+
+if (isset($_POST["friend"])) {
+    extract($_POST);
+    $sender = $_SESSION["user_id"];
+    Room::addFriendRequest($sender, $friend);
+    echo json_encode($_POST);
+    exit;
+}
+
+if(isset($_POST["getInvitation"])) {
+    $invitation = Room::getFriendInvitation($_SESSION["user_id"]);
+    echo json_encode($invitation);
+}
